@@ -1,41 +1,41 @@
 
 
-Faces (12)
+Faces (11)
 Physical Material	Polystyrene
 Appearance	Polystyrene
 
 Bodies (1)
-Area	3.694E+05 mm^2
+Area	4.113E+05 mm^2
 Density	0.001 g / mm^3
-Mass	1.106E+04 g
-Volume	1.084E+07 mm^3
+Mass	1.264E+04 g
+Volume	1.238E+07 mm^3
 Physical Material	Polystyrene
 Appearance	Polystyrene
 
 Bounding Box
 	Length 	 350.00 mm
 	Width 	 100.00 mm
-	Height 	 350.00 mm
-Center of Mass	95.00 mm, 49.384 mm, 102.542 mm
+	Height 	 400.00 mm
+Center of Mass	95.00 mm, 50.00 mm, 76.00 mm
 
 Moment of Inertia at Center of Mass   (g mm^2)
-	Ixx = 1.142E+08
-	Ixy = 0.00
-	Ixz = -4.547E-08
-	Iyx = 0.00
-	Iyy = 2.116E+08
-	Iyz = 8.488E+04
-	Izx = -4.547E-08
-	Izy = 8.488E+04
-	Izz = 1.160E+08
+	Ixx = 1.691E+08
+	Ixy = 2.274E-08
+	Ixz = 5.684E-08
+	Iyx = 2.274E-08
+	Iyy = 2.832E+08
+	Iyz = 1.705E-08
+	Izx = 5.684E-08
+	Izy = 1.705E-08
+	Izz = 1.351E+08
 
 Moment of Inertia at Origin   (g mm^2)
-	Ixx = 2.575E+08
-	Ixy = -5.190E+07
-	Ixz = -1.078E+08
-	Iyx = -5.190E+07
-	Iyy = 4.278E+08
-	Iyz = -5.594E+07
-	Izx = -1.078E+08
-	Izy = -5.594E+07
-	Izz = 2.428E+08
+	Ixx = 2.737E+08
+	Ixy = -6.004E+07
+	Ixz = -9.127E+07
+	Iyx = -6.004E+07
+	Iyy = 4.702E+08
+	Iyz = -4.804E+07
+	Izx = -9.127E+07
+	Izy = -4.804E+07
+	Izz = 2.808E+08
