@@ -1,0 +1,30 @@
+function sysCall init() --initialize all of the settings
+--do some intitialization here
+
+joint = sim.getObjectHandle('Revolute_joint') --lets you be able to handle the joint
+last_time = sim.getSimulationTime() --retrieve current simulation time
+--this has stored the time at 1 instant
+ccw = false
+
+end
+
+function sysCall_actuation() --being called every time the simulation is running
+--put your actuation code here
+
+if((sim.getSimulationTime()-last_time) > 5)then
+time_elapsed = true
+last_time = sim.getSimulationTime()
+--this makes it update every 5 seconds
+else
+time_elasped = false
+end
+if (time_elasped and ccw ==true) then
+ccw=false
+sim.setJointTargetPosition(joint, 90*math.pi/180)
+elseif(time_elapsed and ccw == false) then
+ccw = true
+sim.setJointTargetPosition(joint, -90*math.pi/180)
+
+end
+
+end

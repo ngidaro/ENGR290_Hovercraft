@@ -1,0 +1,57 @@
+function sysCall_init() --initialize all of the settings
+--do some intitialization here
+
+joint = sim.getObjectHandle('Fan_joint')--initialize the fan handle
+sonar = sim.getObjectHandle('Front_sensor)--initialize the front sensor
+sensor = sim.getObectHandle('Side_sensor)--initialize the side sensor
+
+max_dist = 1 --this sets the max distance for the front sensor
+
+end
+
+function sysCall_actuation() --being called every time the simulation is running
+--put your actuation code here
+--this is where we are going to set the position of the fans
+
+sim.setJointTargetPosition(joint, 90*math.pi/180)
+--make a right trun because fan is pointing towards left side
+
+sim.setJointTargetPosition(joint, -90*math.pi/180)
+--make a left turn because fan is pointing toward the right side
+
+--need to adjust the maximum velocity for the turn of the join in the simulation
+
+end
+
+
+function sysCall_sens() --intitialize all of the senosr settings
+
+distance = getDistance(sonar, max_distance)
+--we are defining a function that will be sending it the handle that we are using and
+--the max distance the we are going to apply to it
+
+
+
+
+
+
+
+
+
+
+
+
+function getDistance(sensor, max_dist) --ideally will be used for the sonar senor in front
+local detected, distance --created the local variables
+detected,distance = sim.readProximitySensor(sensor) --gets the value of the sonar and makes it equal to those 2 variables 
+if (detected<1)then --checks if the distance is within the region
+distance = max_dist --makes the local distance into the max_distance
+end
+return distance --will either retunr the max_dist or what it reads from the sensor
+end
+
+function turn()--will make the hovercraft turn in a specific loacation
+--vturn:turning speed
+--direction: 1 = go right, -1 = go left
+local 
+
