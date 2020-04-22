@@ -35,21 +35,21 @@ end
 function sysCall_sens() --intitialize all of the senosr settings
 
 if(state==1)then
-	lastTime=sim.getSimulationTime90
-	if (Wall_Front) then
+	lastTime=sim.getSimulationTime()
+	if (wall_front) then
 		state = 2
 	end
-	if not (Wall_Side) then
+	if not (wall_Side) then
 		state=3
 	end
 elseif (state==2)then
 	local time_elapsed = ((sim.getSimulationTime() - lastTime) >minTurnTime)
-	if (Wall_Side and time_elasped) then
+	if (wall_side and time_elasped) then
 		state = 1
 	end
 	elseif (state==3) then 
 	local time_elapsed = ((sim.getSimulationTime() - lastTime) >minCurveTime)
-	if (Wall_Side and time_elapsed) then 
+	if (wall_side and time_elapsed) then 
 		state =1
 	end
 end
@@ -58,8 +58,8 @@ end
 function getDistance(sensor, max_dist) --ideally will be used for the sonar senor in front
 	local detected_1, detected_2, start_distance, end_distance, start_time, net_time --created the local variables
 	start_time = sim.getSimulationTime() --get the time when you call the function
-	
 	start_distance, detected_1 = sim.readProximitySensor(sensor) --gets the value of the sonar and makes it equal to the starting value
+	
 	if (detected_1<1)then --checks if the distance is within the region --checks to make sure we are geting distance without errors
 		distance_start = max_dist --makes the local distance into the max_distance (prevents errors, can't be less than 1)
 	end
@@ -80,8 +80,6 @@ function getDistance(sensor, max_dist) --ideally will be used for the sonar seno
 	return net_time --this will return either a true or a false
 end
 
---want to add to the top function the time aspect where it checks the distacne at 2 sepertate time instances
---and will also return the a true of the distance is the same for 1 second
 
 function follow_wall()
 --dfr is the side sensor first time it take the value for distance
@@ -111,3 +109,25 @@ end
 
 --need to create the curve function (left side) and the turn function (right side)
 
+end
+
+function wall_front() --checks if there is a wall in the front
+local distance, time
+	distance, time = get_distance(sonar, max_dist) --gets the distance and boolean from the function
+	if (distance < 3 and time) --checks if the distance (and makes sure its not an error) and boolean are true
+		return true --there is a wall in front
+	else
+		retrun false --there is not wall in front
+	end
+end
+
+function wall_side() --checks if there is a wall on the side
+local disance, time
+	distance, time = get_distance(sensor, max_dist)--gets the distance and boolean from the function
+	if (distance < 3 and time)--checks if the distance (and makes sure its not an error) and boolean are true
+		return true -- there is a wall on the side
+	else
+		retrun false --there is not wall on the side
+	end
+end
+	
