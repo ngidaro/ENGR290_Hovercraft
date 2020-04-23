@@ -1,0 +1,44 @@
+function sysCall_init() --initialize all of the settings
+--do some intitialization here
+
+	joint = sim.getObjectHandle('Fan_joint')--initialize the fan handle
+	sonar = sim.getObjectHandle('Front_sensor)--initialize the front sensor
+	sensor = sim.getObectHandle('Side_sensor)--initialize the side sensor
+	max_dist = 0.3 --this sets the max distance for the front sensor
+	fan_velocity = setJointTargetVelocity('Back_Fan_Speed')--sets the stardard speed of the fan 
+	state = 1 --this will initialize the robot to follow the wall
+	tolerance = 1 --this is for how much error we want for the getDistance function
+	minturntime = 5 --the minimum amount of time it takes to complete the turn
+	mincurvetime = 5 --the minimum amount of time it takes to complete the curve
+
+end
+
+--Added the mincurtimes, which need to get by being tested
+
+function sysCall_sens() --intitialize all of the senosr settings
+local last_time --hold the start time
+if(state==1)then
+	last_time=sim.getSimulationTime() --this is to get the starting time
+	--this will keep updating becuase it will continuously be in this state
+	if (wall_front) then --this is to detect if there is a wall infront
+		state = 2 --this is to turn left (making the joint fan turn right)
+	end
+	if (wall_side) then
+		state=3 --this will make it curve to the left
+	end
+elseif (state==2)then
+	local time_elapsed = ((sim.getSimulationTime() - lastTime) >minturntime) 
+	--need to ge the minturntime
+	if (wall_side and time_elasped) then
+		state = 1 --brings it back to the state of following wall
+	end
+	elseif (state==3) then 
+	local time_elapsed = ((sim.getSimulationTime() - lastTime) >mincurvetime)
+	if (wall_side and time_elapsed) then 
+		state =1 --brings it back to the state of following wall
+	end
+end
+end
+
+--made the adjustements to picking which state we need to be in
+--should work fine, let me know if something doesn't
